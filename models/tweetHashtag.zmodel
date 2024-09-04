@@ -1,0 +1,16 @@
+
+ import "./tweet.zmodel"  
+ import "./hashtag.zmodel"  
+
+model TweetHashtag {
+
+    tweetId      String?          
+    tweet          Tweet?          @relation(fields: [tweetId], references: [id], name:"tweet")  
+    hashtagId  String?          
+    hashtag      Hashtag?      @relation(fields: [hashtagId], references: [id], name:"hashtag")  
+    id                String        @id @default(uuid())  
+
+dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}

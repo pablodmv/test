@@ -1,0 +1,13 @@
+
+ import "./tweetHashtag.zmodel"  
+
+model Hashtag {
+
+    id                String        @id @default(uuid())  
+    name            String?          
+
+tweetHashtags  TweetHashtag[]  @relation("hashtag")  
+      dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}

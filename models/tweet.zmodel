@@ -1,0 +1,23 @@
+
+ import "./user.zmodel"  
+ import "./like.zmodel"  
+ import "./retweet.zmodel"  
+ import "./comment.zmodel"  
+ import "./tweetHashtag.zmodel"  
+
+model Tweet {
+
+    id                String        @id @default(uuid())  
+    content      String?          
+ 
+    userId        String?          
+    user            User?            @relation(fields: [userId], references: [id], name:"user")  
+
+likes          Like[]        @relation("tweet")  
+    retweets    Retweet[]  @relation("tweet")  
+    comments    Comment[]  @relation("tweet")  
+    tweetHashtags  TweetHashtag[]  @relation("tweet")  
+      dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}
